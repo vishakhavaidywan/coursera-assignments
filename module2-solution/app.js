@@ -6,6 +6,7 @@
     .controller('AlreadyBoughtController', AlreadyBoughtController)
     .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
     
+    // controller 1
     ToBuyController.$inject = ['ShoppingListCheckOffService'];
     function ToBuyController(ShoppingListCheckOffService) {
       var toBuy = this;
@@ -15,18 +16,18 @@
       }
     }
     
-    
+    // controller 2
     AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
     function AlreadyBoughtController(ShoppingListCheckOffService) {
       var alreadyBought = this;
       alreadyBought.alreadyBoughtList = ShoppingListCheckOffService.getBoughtList();
     }
     
-    
+    // service
     function ShoppingListCheckOffService() {
       var service = this;
     
-      // List of t buy items
+      // List of items to buy
       var toBuyItems = [
           {
               name: "Mangoes",
@@ -50,6 +51,7 @@
         }
       ];
 
+      // items already bought - initially empty
       var boughtItems = [];
     
       service.getToBuyList = function () {
@@ -60,6 +62,7 @@
         return boughtItems;
       };
 
+      // function to take the selected emelemnt from the toBuyList and add into the bought list
       service.buyThisItem = function (itemIndex) {
         var deletedItem = toBuyItems.splice(itemIndex, 1);
         boughtItems.push(deletedItem[0]);
